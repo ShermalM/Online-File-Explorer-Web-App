@@ -34,7 +34,7 @@ thead{
     cursor: pointer; 
 }
 
-i{
+tbody i{
     font-size: 24px;
     color: #68829E;
 }
