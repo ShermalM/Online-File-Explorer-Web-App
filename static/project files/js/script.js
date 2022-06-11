@@ -22,24 +22,33 @@ children_array.forEach(element => {
 
 //Sort Status
 const sortStatus = {
-    name: 'none',       //none, up, down
-//    size:,
- //   last_modified:
+    name: 'none',               //none, up, down
+    size: 'none',               //none, up, down
+    last_modified: 'none'       //none, up, down
 };
 
 //functions to sort the array of objects
-const sort_name = (items, option) => {
+const sort = (items, option, type) => {
     items.sort((item1, item2) => {
-        const name1 = item1.name.toUpperCase();
-        const name2 = item2.name.toUpperCase();
+        let value1, value2;
+        if(type === 'name'){
+            value1 = item1.name.toUpperCase();
+            value2 = item2.name.toUpperCase();
+        }else if(type === 'size'){
+            value1 = item1.size;
+            value2 = item2.size;
+        }else{
+            value1 = item1.last_modified;
+            value2 = item2.last_modified;
+        }
 
-        if(name1 < name2){
+        if(value1 < value2){
             return -1;
         }
-        if(name1 > name2){
+        if(value1 > value2){
             return 1;
         }
-        //equal names
+        //equal values
         return 0;
     });
     if(option === 'down'){
@@ -56,26 +65,24 @@ const fill_table_body = items => {
 
 //event listeners
 document.getElementById('table_head_row').addEventListener('click', event => {
-    if(event.target){
-        if(event.target.id === 'name'){
+    if(event.target){      
             //clear icons
             $('i').remove();
 
-            if(['none','down'].includes(sortStatus.name)){
+            if(['none','down'].includes(sortStatus[event.target.id])){      //event.target.id either name, size, last_modified
                 //sort in ascending order
-                sort_name(items,'up');
-                sortStatus.name = 'up';
+                sort(items,'up', event.target.id);
+                sortStatus[event.target.id] = 'up';
                 //add icon
                 event.target.innerHTML += '<i class="bi bi-arrow-up-circle-fill"></i>';
             }
-            else if(sortStatus.name === 'up'){
+            else if(sortStatus[event.target.id] === 'up'){
                 //sort in descending order
-                sort_name(items,'down');
-                sortStatus.name = 'down';
+                sort(items,'down', event.target.id);
+                sortStatus[event.target.id] = 'down';
                 //add icon
                 event.target.innerHTML += '<i class="bi bi-arrow-down-circle-fill"></i>';
             }
             fill_table_body(items);
-        }
     }
 });
