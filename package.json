@@ -1,0 +1,22 @@
+{
+  "name": "fileexplorer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShermalM/Online-File-Explorer-Web-App.git"
+  },
+  "author": "Shermal Marasinghe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShermalM/Online-File-Explorer-Web-App/issues"
+  },
+  "homepage": "https://github.com/ShermalM/Online-File-Explorer-Web-App#readme"
+}
